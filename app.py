@@ -481,5 +481,7 @@ def export_data():
             "status": "error"
         }), 500
 
+handler = app  # Untuk AWS Lambda / Vercel / serverless platform
+
 if __name__ == '__main__':
-    app.run(debug= True)
+    app.run(debug=True)
