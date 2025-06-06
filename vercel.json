@@ -1,0 +1,102 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "app.py",
+      "use": "@vercel/python",
+      "config": {
+        "maxLambdaSize": "50mb"
+      }
+    }
+  ],
+  "routes": [
+    {
+      "src": "/",
+      "dest": "app.py",
+      "methods": ["GET"]
+    },
+    {
+      "src": "/predict",
+      "dest": "app.py",
+      "methods": ["POST"]
+    },
+    {
+      "src": "/health",
+      "dest": "app.py",
+      "methods": ["GET"]
+    },
+    {
+      "src": "/model-info",
+      "dest": "app.py",
+      "methods": ["GET"]
+    },
+    {
+      "src": "/example",
+      "dest": "app.py",
+      "methods": ["GET"]
+    },
+    {
+      "src": "/convert-age",
+      "dest": "app.py",
+      "methods": ["POST"]
+    },
+    {
+      "src": "/saved-data",
+      "dest": "app.py",
+      "methods": ["GET"]
+    },
+    {
+      "src": "/saved-data/(.*)",
+      "dest": "app.py",
+      "methods": ["GET"]
+    },
+    {
+      "src": "/saved-data/stats",
+      "dest": "app.py",
+      "methods": ["GET"]
+    },
+    {
+      "src": "/export-data",
+      "dest": "app.py",
+      "methods": ["GET"]
+    },
+    {
+      "src": "/(.*)",
+      "dest": "app.py"
+    }
+  ],
+  "env": {
+    "PYTHONPATH": ".",
+    "FLASK_ENV": "production"
+  },
+  "functions": {
+    "app.py": {
+      "maxDuration": 30
+    }
+  },
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "Access-Control-Allow-Origin",
+          "value": "*"
+        },
+        {
+          "key": "Access-Control-Allow-Methods",
+          "value": "GET, POST, PUT, DELETE, OPTIONS"
+        },
+        {
+          "key": "Access-Control-Allow-Headers",
+          "value": "Content-Type, Authorization"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "no-cache, no-store, must-revalidate"
+        }
+      ]
+    }
+  ],
+  "outputDirectory": ".",
+  "installCommand": "pip install -r requirements.txt"
+}
