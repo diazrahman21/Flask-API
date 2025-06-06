@@ -5,71 +5,16 @@
       "src": "app.py",
       "use": "@vercel/python",
       "config": {
-        "maxLambdaSize": "50mb",
-        "maxDuration": 30
+        "maxLambdaSize": "50mb"
       }
     }
   ],
-  "routes": [
+  "rewrites": [
     {
-      "src": "/saved-data/stats",
-      "dest": "app.py",
-      "methods": ["GET"]
-    },
-    {
-      "src": "/saved-data/([0-9]+)",
-      "dest": "app.py",
-      "methods": ["GET"]
-    },
-    {
-      "src": "/saved-data",
-      "dest": "app.py",
-      "methods": ["GET"]
-    },
-    {
-      "src": "/predict",
-      "dest": "app.py",
-      "methods": ["POST"]
-    },
-    {
-      "src": "/health",
-      "dest": "app.py",
-      "methods": ["GET"]
-    },
-    {
-      "src": "/model-info",
-      "dest": "app.py",
-      "methods": ["GET"]
-    },
-    {
-      "src": "/example",
-      "dest": "app.py",
-      "methods": ["GET"]
-    },
-    {
-      "src": "/convert-age",
-      "dest": "app.py",
-      "methods": ["POST"]
-    },
-    {
-      "src": "/export-data",
-      "dest": "app.py",
-      "methods": ["GET"]
-    },
-    {
-      "src": "/",
-      "dest": "app.py",
-      "methods": ["GET"]
-    },
-    {
-      "src": "/(.*)",
-      "dest": "app.py"
+      "source": "/(.*)",
+      "destination": "app.py"
     }
   ],
-  "env": {
-    "PYTHONPATH": ".",
-    "FLASK_ENV": "production"
-  },
   "headers": [
     {
       "source": "/(.*)",
@@ -85,12 +30,11 @@
         {
           "key": "Access-Control-Allow-Headers",
           "value": "Content-Type, Authorization"
-        },
-        {
-          "key": "Cache-Control",
-          "value": "no-cache, no-store, must-revalidate"
         }
       ]
     }
-  ]
+  ],
+  "env": {
+    "FLASK_ENV": "production"
+  }
 }
