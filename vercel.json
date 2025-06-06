@@ -5,13 +5,24 @@
       "src": "app.py",
       "use": "@vercel/python",
       "config": {
-        "maxLambdaSize": "50mb"
+        "maxLambdaSize": "50mb",
+        "maxDuration": 30
       }
     }
   ],
   "routes": [
     {
-      "src": "/",
+      "src": "/saved-data/stats",
+      "dest": "app.py",
+      "methods": ["GET"]
+    },
+    {
+      "src": "/saved-data/([0-9]+)",
+      "dest": "app.py",
+      "methods": ["GET"]
+    },
+    {
+      "src": "/saved-data",
       "dest": "app.py",
       "methods": ["GET"]
     },
@@ -41,22 +52,12 @@
       "methods": ["POST"]
     },
     {
-      "src": "/saved-data",
-      "dest": "app.py",
-      "methods": ["GET"]
-    },
-    {
-      "src": "/saved-data/(.*)",
-      "dest": "app.py",
-      "methods": ["GET"]
-    },
-    {
-      "src": "/saved-data/stats",
-      "dest": "app.py",
-      "methods": ["GET"]
-    },
-    {
       "src": "/export-data",
+      "dest": "app.py",
+      "methods": ["GET"]
+    },
+    {
+      "src": "/",
       "dest": "app.py",
       "methods": ["GET"]
     },
@@ -68,11 +69,6 @@
   "env": {
     "PYTHONPATH": ".",
     "FLASK_ENV": "production"
-  },
-  "functions": {
-    "app.py": {
-      "maxDuration": 30
-    }
   },
   "headers": [
     {
@@ -96,7 +92,5 @@
         }
       ]
     }
-  ],
-  "outputDirectory": ".",
-  "installCommand": "pip install -r requirements.txt"
+  ]
 }
