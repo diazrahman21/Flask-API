@@ -113,5 +113,787 @@
       "confidence": 79.46
     },
     "id": 5
+  },
+  {
+    "timestamp": "2025-06-08 21:28:46",
+    "input": {
+      "age": 50,
+      "gender": 2,
+      "height": 170,
+      "weight": 70,
+      "ap_hi": 120,
+      "ap_lo": 80,
+      "cholesterol": 1,
+      "gluc": 1,
+      "smoke": 0,
+      "alco": 0,
+      "active": 1
+    },
+    "prediction": {
+      "risk": 0,
+      "risk_label": "Low Risk",
+      "probability": 0.2693,
+      "confidence": 73.07
+    },
+    "id": 6
+  },
+  {
+    "timestamp": "2025-06-08 21:30:03",
+    "input": {
+      "age": 50,
+      "gender": 2,
+      "height": 170,
+      "weight": 70,
+      "ap_hi": 120,
+      "ap_lo": 80,
+      "cholesterol": 1,
+      "gluc": 1,
+      "smoke": 0,
+      "alco": 0,
+      "active": 1
+    },
+    "prediction": {
+      "risk": 0,
+      "risk_label": "Low Risk",
+      "probability": 0.2693,
+      "confidence": 73.07
+    },
+    "id": 7
+  },
+  {
+    "timestamp": "2025-06-08 21:43:45",
+    "input": {
+      "age": 50,
+      "gender": 2,
+      "height": 170,
+      "weight": 70,
+      "ap_hi": 120,
+      "ap_lo": 80,
+      "cholesterol": 1,
+      "gluc": 1,
+      "smoke": 0,
+      "alco": 0,
+      "active": 1
+    },
+    "prediction": {
+      "risk": 0,
+      "risk_label": "Low Risk",
+      "probability": 0.2693,
+      "confidence": 73.07
+    },
+    "id": 8
+  },
+  {
+    "timestamp": "2025-06-08 21:44:49",
+    "input": {
+      "age": 79,
+      "gender": 2,
+      "height": 180,
+      "weight": 100,
+      "ap_hi": 120,
+      "ap_lo": 90,
+      "cholesterol": 1,
+      "gluc": 1,
+      "smoke": 0,
+      "alco": 0,
+      "active": 0
+    },
+    "prediction": {
+      "risk": 1,
+      "risk_label": "High Risk",
+      "probability": 0.9509,
+      "confidence": 95.09
+    },
+    "id": 9
+  },
+  {
+    "timestamp": "2025-06-08 21:46:59",
+    "input": {
+      "age": 50,
+      "gender": 2,
+      "height": 170,
+      "weight": 70,
+      "ap_hi": 120,
+      "ap_lo": 80,
+      "cholesterol": 1,
+      "gluc": 1,
+      "smoke": 0,
+      "alco": 0,
+      "active": 1
+    },
+    "prediction": {
+      "risk": 0,
+      "risk_label": "Low Risk",
+      "probability": 0.2693,
+      "confidence": 73.07
+    },
+    "id": 10
+  },
+  {
+    "timestamp": "2025-06-08 21:47:36",
+    "input": {
+      "age": 50,
+      "gender": 2,
+      "height": 170,
+      "weight": 70,
+      "ap_hi": 120,
+      "ap_lo": 80,
+      "cholesterol": 1,
+      "gluc": 1,
+      "smoke": 0,
+      "alco": 0,
+      "active": 1
+    },
+    "prediction": {
+      "risk": 0,
+      "risk_label": "Low Risk",
+      "probability": 0.2693,
+      "confidence": 73.07
+    },
+    "id": 11
+  },
+  {
+    "timestamp": "2025-06-08 21:48:11",
+    "input": {
+      "age": 30,
+      "gender": 1,
+      "height": 160,
+      "weight": 55,
+      "ap_hi": 110,
+      "ap_lo": 70,
+      "cholesterol": 1,
+      "gluc": 1,
+      "smoke": 0,
+      "alco": 0,
+      "active": 1
+    },
+    "prediction": {
+      "risk": 0,
+      "risk_label": "Low Risk",
+      "probability": 0.0102,
+      "confidence": 98.98
+    },
+    "id": 12
+  },
+  {
+    "timestamp": "2025-06-08 21:48:11",
+    "input": {
+      "age": 50,
+      "gender": 2,
+      "height": 175,
+      "weight": 80,
+      "ap_hi": 140,
+      "ap_lo": 90,
+      "cholesterol": 2,
+      "gluc": 2,
+      "smoke": 1,
+      "alco": 0,
+      "active": 0
+    },
+    "prediction": {
+      "risk": 1,
+      "risk_label": "High Risk",
+      "probability": 0.8038,
+      "confidence": 80.38
+    },
+    "id": 13
+  },
+  {
+    "timestamp": "2025-06-08 21:48:11",
+    "input": {
+      "age": 65,
+      "gender": 2,
+      "height": 170,
+      "weight": 95,
+      "ap_hi": 160,
+      "ap_lo": 100,
+      "cholesterol": 3,
+      "gluc": 3,
+      "smoke": 1,
+      "alco": 1,
+      "active": 0
+    },
+    "prediction": {
+      "risk": 1,
+      "risk_label": "High Risk",
+      "probability": 0.9304,
+      "confidence": 93.04
+    },
+    "id": 14
+  },
+  {
+    "timestamp": "2025-06-08 21:48:33",
+    "input": {
+      "age": 40,
+      "gender": 2,
+      "height": 170,
+      "weight": 70,
+      "ap_hi": 120,
+      "ap_lo": 80,
+      "cholesterol": 1,
+      "gluc": 1,
+      "smoke": 0,
+      "alco": 0,
+      "active": 1
+    },
+    "prediction": {
+      "risk": 0,
+      "risk_label": "Low Risk",
+      "probability": 0.1968,
+      "confidence": 80.32
+    },
+    "id": 15
+  },
+  {
+    "timestamp": "2025-06-08 21:48:34",
+    "input": {
+      "age": 40,
+      "gender": 2,
+      "height": 170,
+      "weight": 70,
+      "ap_hi": 120,
+      "ap_lo": 80,
+      "cholesterol": 1,
+      "gluc": 1,
+      "smoke": 0,
+      "alco": 0,
+      "active": 1
+    },
+    "prediction": {
+      "risk": 0,
+      "risk_label": "Low Risk",
+      "probability": 0.1968,
+      "confidence": 80.32
+    },
+    "id": 16
+  },
+  {
+    "timestamp": "2025-06-08 21:48:34",
+    "input": {
+      "age": 40,
+      "gender": 2,
+      "height": 170,
+      "weight": 70,
+      "ap_hi": 120,
+      "ap_lo": 80,
+      "cholesterol": 1,
+      "gluc": 1,
+      "smoke": 0,
+      "alco": 0,
+      "active": 1
+    },
+    "prediction": {
+      "risk": 0,
+      "risk_label": "Low Risk",
+      "probability": 0.1968,
+      "confidence": 80.32
+    },
+    "id": 17
+  },
+  {
+    "timestamp": "2025-06-08 21:48:34",
+    "input": {
+      "age": 40,
+      "gender": 2,
+      "height": 170,
+      "weight": 70,
+      "ap_hi": 120,
+      "ap_lo": 80,
+      "cholesterol": 1,
+      "gluc": 1,
+      "smoke": 0,
+      "alco": 0,
+      "active": 1
+    },
+    "prediction": {
+      "risk": 0,
+      "risk_label": "Low Risk",
+      "probability": 0.1968,
+      "confidence": 80.32
+    },
+    "id": 18
+  },
+  {
+    "timestamp": "2025-06-08 21:48:35",
+    "input": {
+      "age": 40,
+      "gender": 2,
+      "height": 170,
+      "weight": 70,
+      "ap_hi": 120,
+      "ap_lo": 80,
+      "cholesterol": 1,
+      "gluc": 1,
+      "smoke": 0,
+      "alco": 0,
+      "active": 1
+    },
+    "prediction": {
+      "risk": 0,
+      "risk_label": "Low Risk",
+      "probability": 0.1968,
+      "confidence": 80.32
+    },
+    "id": 19
+  },
+  {
+    "timestamp": "2025-06-08 21:49:38",
+    "input": {
+      "age": 50,
+      "gender": 2,
+      "height": 170,
+      "weight": 70,
+      "ap_hi": 120,
+      "ap_lo": 80,
+      "cholesterol": 1,
+      "gluc": 1,
+      "smoke": 0,
+      "alco": 0,
+      "active": 1
+    },
+    "prediction": {
+      "risk": 0,
+      "risk_label": "Low Risk",
+      "probability": 0.2693,
+      "confidence": 73.07
+    },
+    "id": 20
+  },
+  {
+    "timestamp": "2025-06-08 21:54:10",
+    "input": {
+      "age": 50,
+      "gender": 2,
+      "height": 170,
+      "weight": 70,
+      "ap_hi": 120,
+      "ap_lo": 80,
+      "cholesterol": 1,
+      "gluc": 1,
+      "smoke": 0,
+      "alco": 0,
+      "active": 1
+    },
+    "prediction": {
+      "risk": 0,
+      "risk_label": "Low Risk",
+      "probability": 0.2693,
+      "confidence": 73.07
+    },
+    "id": 21
+  },
+  {
+    "timestamp": "2025-06-08 21:54:10",
+    "input": {
+      "age": 50,
+      "gender": 2,
+      "height": 170,
+      "weight": 70,
+      "ap_hi": 120,
+      "ap_lo": 80,
+      "cholesterol": 1,
+      "gluc": 1,
+      "smoke": 0,
+      "alco": 0,
+      "active": 1
+    },
+    "prediction": {
+      "risk": 0,
+      "risk_label": "Low Risk",
+      "probability": 0.2693,
+      "confidence": 73.07
+    },
+    "id": 22
+  },
+  {
+    "timestamp": "2025-06-08 21:54:30",
+    "input": {
+      "age": 50,
+      "gender": 2,
+      "height": 170,
+      "weight": 70,
+      "ap_hi": 120,
+      "ap_lo": 80,
+      "cholesterol": 1,
+      "gluc": 1,
+      "smoke": 0,
+      "alco": 0,
+      "active": 1
+    },
+    "prediction": {
+      "risk": 0,
+      "risk_label": "Low Risk",
+      "probability": 0.2693,
+      "confidence": 73.07
+    },
+    "id": 23
+  },
+  {
+    "timestamp": "2025-06-08 21:57:18",
+    "input": {
+      "age": 50,
+      "gender": 2,
+      "height": 170,
+      "weight": 70,
+      "ap_hi": 120,
+      "ap_lo": 80,
+      "cholesterol": 1,
+      "gluc": 1,
+      "smoke": 0,
+      "alco": 0,
+      "active": 1
+    },
+    "prediction": {
+      "risk": 0,
+      "risk_label": "Low Risk",
+      "probability": 0.2693,
+      "confidence": 73.07
+    },
+    "id": 24
+  },
+  {
+    "timestamp": "2025-06-08 22:00:23",
+    "input": {
+      "age": 50,
+      "gender": 2,
+      "height": 170,
+      "weight": 70,
+      "ap_hi": 120,
+      "ap_lo": 80,
+      "cholesterol": 1,
+      "gluc": 1,
+      "smoke": 0,
+      "alco": 0,
+      "active": 1
+    },
+    "prediction": {
+      "risk": 0,
+      "risk_label": "Low Risk",
+      "probability": 0.2693,
+      "confidence": 73.07
+    },
+    "id": 25
+  },
+  {
+    "timestamp": "2025-06-08 22:00:44",
+    "input": {
+      "age": 50,
+      "gender": 2,
+      "height": 170,
+      "weight": 70,
+      "ap_hi": 120,
+      "ap_lo": 80,
+      "cholesterol": 1,
+      "gluc": 1,
+      "smoke": 0,
+      "alco": 0,
+      "active": 1
+    },
+    "prediction": {
+      "risk": 0,
+      "risk_label": "Low Risk",
+      "probability": 0.2693,
+      "confidence": 73.07
+    },
+    "id": 26
+  },
+  {
+    "timestamp": "2025-06-08 22:01:15",
+    "input": {
+      "age": 50,
+      "gender": 2,
+      "height": 170,
+      "weight": 70,
+      "ap_hi": 120,
+      "ap_lo": 80,
+      "cholesterol": 1,
+      "gluc": 1,
+      "smoke": 0,
+      "alco": 0,
+      "active": 1
+    },
+    "prediction": {
+      "risk": 0,
+      "risk_label": "Low Risk",
+      "probability": 0.2693,
+      "confidence": 73.07
+    },
+    "id": 27
+  },
+  {
+    "timestamp": "2025-06-08 22:01:45",
+    "input": {
+      "age": 50,
+      "gender": 2,
+      "height": 170,
+      "weight": 70,
+      "ap_hi": 120,
+      "ap_lo": 80,
+      "cholesterol": 1,
+      "gluc": 1,
+      "smoke": 0,
+      "alco": 0,
+      "active": 1
+    },
+    "prediction": {
+      "risk": 0,
+      "risk_label": "Low Risk",
+      "probability": 0.2693,
+      "confidence": 73.07
+    },
+    "id": 28
+  },
+  {
+    "timestamp": "2025-06-08 22:02:39",
+    "input": {
+      "age": 25,
+      "gender": 1,
+      "height": 160,
+      "weight": 55,
+      "ap_hi": 110,
+      "ap_lo": 70,
+      "cholesterol": 1,
+      "gluc": 1,
+      "smoke": 0,
+      "alco": 0,
+      "active": 1
+    },
+    "prediction": {
+      "risk": 0,
+      "risk_label": "Low Risk",
+      "probability": 0.0046,
+      "confidence": 99.54
+    },
+    "id": 29
+  },
+  {
+    "timestamp": "2025-06-08 22:02:39",
+    "input": {
+      "age": 55,
+      "gender": 2,
+      "height": 170,
+      "weight": 90,
+      "ap_hi": 150,
+      "ap_lo": 95,
+      "cholesterol": 3,
+      "gluc": 3,
+      "smoke": 1,
+      "alco": 1,
+      "active": 0
+    },
+    "prediction": {
+      "risk": 1,
+      "risk_label": "High Risk",
+      "probability": 0.9009,
+      "confidence": 90.09
+    },
+    "id": 30
+  },
+  {
+    "timestamp": "2025-06-08 22:02:40",
+    "input": {
+      "age": 65,
+      "gender": 1,
+      "height": 155,
+      "weight": 70,
+      "ap_hi": 130,
+      "ap_lo": 85,
+      "cholesterol": 2,
+      "gluc": 2,
+      "smoke": 0,
+      "alco": 0,
+      "active": 1
+    },
+    "prediction": {
+      "risk": 1,
+      "risk_label": "High Risk",
+      "probability": 0.8263,
+      "confidence": 82.63
+    },
+    "id": 31
+  },
+  {
+    "timestamp": "2025-06-08 22:05:36",
+    "input": {
+      "age": 87,
+      "gender": 1,
+      "height": 169,
+      "weight": 77,
+      "ap_hi": 120,
+      "ap_lo": 90,
+      "cholesterol": 1,
+      "gluc": 1,
+      "smoke": 1,
+      "alco": 1,
+      "active": 0
+    },
+    "prediction": {
+      "risk": 1,
+      "risk_label": "High Risk",
+      "probability": 0.9949,
+      "confidence": 99.49
+    },
+    "id": 32
+  },
+  {
+    "timestamp": "2025-06-08 22:11:55",
+    "input": {
+      "age": 50,
+      "gender": 2,
+      "height": 170,
+      "weight": 70,
+      "ap_hi": 120,
+      "ap_lo": 80,
+      "cholesterol": 1,
+      "gluc": 1,
+      "smoke": 0,
+      "alco": 0,
+      "active": 1
+    },
+    "prediction": {
+      "risk": 0,
+      "risk_label": "Low Risk",
+      "probability": 0.2693,
+      "confidence": 73.07
+    },
+    "id": 33
+  },
+  {
+    "timestamp": "2025-06-08 22:14:36",
+    "input": {
+      "age": 25,
+      "gender": 1,
+      "height": 169,
+      "weight": 55,
+      "ap_hi": 110,
+      "ap_lo": 70,
+      "cholesterol": 1,
+      "gluc": 1,
+      "smoke": 0,
+      "alco": 0,
+      "active": 1
+    },
+    "prediction": {
+      "risk": 0,
+      "risk_label": "Low Risk",
+      "probability": 0.0039,
+      "confidence": 99.61
+    },
+    "id": 34
+  },
+  {
+    "timestamp": "2025-06-08 22:39:33",
+    "input": {
+      "age": 50,
+      "gender": 2,
+      "height": 170,
+      "weight": 70,
+      "ap_hi": 120,
+      "ap_lo": 80,
+      "cholesterol": 1,
+      "gluc": 1,
+      "smoke": 0,
+      "alco": 0,
+      "active": 1
+    },
+    "prediction": {
+      "risk": 0,
+      "risk_label": "Low Risk",
+      "probability": 0.2693,
+      "confidence": 73.07
+    },
+    "id": 35
+  },
+  {
+    "timestamp": "2025-06-08 22:44:10",
+    "input": {
+      "age": 50,
+      "gender": 2,
+      "height": 170,
+      "weight": 70,
+      "ap_hi": 120,
+      "ap_lo": 80,
+      "cholesterol": 1,
+      "gluc": 1,
+      "smoke": 0,
+      "alco": 0,
+      "active": 1
+    },
+    "prediction": {
+      "risk": 0,
+      "risk_label": "Low Risk",
+      "probability": 0.2693,
+      "confidence": 73.07
+    },
+    "id": 36
+  },
+  {
+    "timestamp": "2025-06-08 22:45:44",
+    "input": {
+      "age": 60,
+      "gender": 1,
+      "height": 151,
+      "weight": 67,
+      "ap_hi": 120,
+      "ap_lo": 80,
+      "cholesterol": 2,
+      "gluc": 2,
+      "smoke": 0,
+      "alco": 0,
+      "active": 0
+    },
+    "prediction": {
+      "risk": 1,
+      "risk_label": "High Risk",
+      "probability": 0.6719,
+      "confidence": 67.19
+    },
+    "id": 37
+  },
+  {
+    "timestamp": "2025-06-08 22:53:42",
+    "input": {
+      "age": 50,
+      "gender": 2,
+      "height": 170,
+      "weight": 70,
+      "ap_hi": 120,
+      "ap_lo": 80,
+      "cholesterol": 1,
+      "gluc": 1,
+      "smoke": 0,
+      "alco": 0,
+      "active": 1
+    },
+    "prediction": {
+      "risk": 0,
+      "risk_label": "Low Risk",
+      "probability": 0.2693,
+      "confidence": 73.07
+    },
+    "id": 38
+  },
+  {
+    "timestamp": "2025-06-08 22:54:43",
+    "input": {
+      "age": 48,
+      "gender": 1,
+      "height": 167,
+      "weight": 71,
+      "ap_hi": 120,
+      "ap_lo": 80,
+      "cholesterol": 2,
+      "gluc": 1,
+      "smoke": 0,
+      "alco": 1,
+      "active": 1
+    },
+    "prediction": {
+      "risk": 1,
+      "risk_label": "High Risk",
+      "probability": 0.5127,
+      "confidence": 51.27
+    },
+    "id": 39
   }
 ]

@@ -9,7 +9,9 @@ import datetime
 import csv
 import pandas as pd
 
+# Inisialisasi Flask app
 app = Flask(__name__)
+CORS(app, origins=['http://localhost:3000', 'http://127.0.0.1:3000', 'http://localhost:5173'])
 
 # Load model dan preprocessing objects saat aplikasi start
 try:
@@ -482,7 +484,9 @@ def export_data():
             "status": "error"
         }), 500
 
-handler = app  # Untuk AWS Lambda / Vercel / serverless platform
+# Handler untuk serverless platform
+handler = app
 
+# Jalankan aplikasi untuk development
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, host='0.0.0.0', port=5000)
