@@ -90,5 +90,28 @@
       "confidence": 79.46
     },
     "id": 4
+  },
+  {
+    "timestamp": "2025-06-08 15:51:39",
+    "input": {
+      "age": 50,
+      "gender": 2,
+      "height": 168,
+      "weight": 62,
+      "ap_hi": 110,
+      "ap_lo": 80,
+      "cholesterol": 1,
+      "gluc": 1,
+      "smoke": 0,
+      "alco": 0,
+      "active": 1
+    },
+    "prediction": {
+      "risk": 0,
+      "risk_label": "Low Risk",
+      "probability": 0.2054,
+      "confidence": 79.46
+    },
+    "id": 5
   }
 ]
