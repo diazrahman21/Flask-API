@@ -32,16 +32,27 @@ def load_model_and_preprocessors():
     global model, scaler, feature_info
     
     try:
+        # Check if files exist
+        model_files = ['my_best_model.h5', 'scaler.pkl', 'feature_info.pkl']
+        missing_files = [f for f in model_files if not os.path.exists(f)]
+        
+        if missing_files:
+            print(f"❌ Missing files: {missing_files}")
+            return False
+        
         # Load model
+        print("📁 Loading model...")
         model = load_model('my_best_model.h5')
         print("✅ Model loaded successfully")
         
         # Load scaler
+        print("📁 Loading scaler...")
         with open('scaler.pkl', 'rb') as f:
             scaler = pickle.load(f)
         print("✅ Scaler loaded successfully")
         
         # Load feature info
+        print("📁 Loading feature info...")
         with open('feature_info.pkl', 'rb') as f:
             feature_info = pickle.load(f)
         print("✅ Feature info loaded successfully")
@@ -50,6 +61,7 @@ def load_model_and_preprocessors():
     
     except Exception as e:
         print(f"❌ Error loading model/preprocessors: {str(e)}")
+        print(f"📁 Current directory files: {os.listdir('.')}")
         return False
 
 def convert_age_to_days(age_years):
@@ -178,18 +190,24 @@ def home():
 @app.route('/health', methods=['GET'])
 def health_check():
     """Health check endpoint"""
+    # Try to reload model if not loaded
+    if model is None:
+        print("🔄 Attempting to reload model...")
+        load_model_and_preprocessors()
+    
     status = {
-        "status": "healthy",
+        "status": "healthy" if all([model is not None, scaler is not None, feature_info is not None]) else "unhealthy",
         "timestamp": datetime.datetime.now().isoformat(),
         "model_loaded": model is not None,
         "scaler_loaded": scaler is not None,
-        "feature_info_loaded": feature_info is not None
+        "feature_info_loaded": feature_info is not None,
+        "current_directory": os.getcwd(),
+        "files_in_directory": os.listdir('.') if os.path.exists('.') else []
     }
     
     if all([model is not None, scaler is not None, feature_info is not None]):
         return jsonify(status), 200
     else:
-        status["status"] = "unhealthy"
         return jsonify(status), 503
 
 @app.route('/model-info', methods=['GET'])
@@ -517,8 +535,13 @@ def internal_error(error):
 
 if __name__ == '__main__':
     # Load model on startup
+    print("🚀 Starting application...")
+    print(f"📁 Working directory: {os.getcwd()}")
+    print(f"📁 Files available: {os.listdir('.')}")
+
     if load_model_and_preprocessors():
-        print("🚀 Starting Cardiovascular Disease Prediction API...")
-        app.run(debug=False, host='0.0.0.0', port=5000)
+        print("✅ All models loaded successfully")
+        port = int(os.environ.get('PORT', 10000))
+        app.run(debug=False, host='0.0.0.0', port=port)
     else:
-        print("❌ Failed to load model. Cannot start application.")
+        print("⚠️ Model loading failed - will retry on first request")

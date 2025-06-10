@@ -4,17 +4,15 @@ services:
   flask-api:
     build: .
     ports:
-      - "5000:5000"
+      - "10000:10000"
     volumes:
       - ./saved_data:/app/saved_data
-      - ./my_best_model.h5:/app/my_best_model.h5
-      - ./scaler.pkl:/app/scaler.pkl
-      - ./feature_info.pkl:/app/feature_info.pkl
     environment:
       - FLASK_ENV=production
+      - PORT=10000
     restart: unless-stopped
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:5000/health"]
+      test: ["CMD", "curl", "-f", "http://localhost:10000/health"]
       interval: 30s
       timeout: 10s
       retries: 3
