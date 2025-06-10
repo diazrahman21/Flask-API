@@ -4,6 +4,8 @@ import numpy as np
 import pickle
 import datetime
 import os
+import sys
+import traceback
 from tensorflow.keras.models import load_model
 import tensorflow as tf
 
@@ -21,6 +23,10 @@ def load_model_and_preprocessors():
     global model, scaler, feature_info
     
     try:
+        print("🔍 Starting model loading process...")
+        print(f"📁 Current working directory: {os.getcwd()}")
+        print(f"📁 Files in directory: {os.listdir('.')}")
+        
         # Check if files exist
         model_files = ['my_best_model.h5', 'scaler.pkl', 'feature_info.pkl']
         missing_files = [f for f in model_files if not os.path.exists(f)]
@@ -29,28 +35,46 @@ def load_model_and_preprocessors():
             print(f"❌ Missing files: {missing_files}")
             return False
         
-        # Load model
-        print("📁 Loading model...")
-        model = load_model('my_best_model.h5')
-        print("✅ Model loaded successfully")
+        print("✅ All required files found")
+        
+        # Load model with detailed error handling
+        print("📁 Loading Keras model...")
+        try:
+            model = load_model('my_best_model.h5', compile=False)
+            print(f"✅ Model loaded successfully - Type: {type(model)}")
+            print(f"   Input shape: {model.input_shape}")
+            print(f"   Output shape: {model.output_shape}")
+        except Exception as e:
+            print(f"❌ Error loading model: {str(e)}")
+            print(f"   Traceback: {traceback.format_exc()}")
+            return False
         
         # Load scaler
         print("📁 Loading scaler...")
-        with open('scaler.pkl', 'rb') as f:
-            scaler = pickle.load(f)
-        print("✅ Scaler loaded successfully")
+        try:
+            with open('scaler.pkl', 'rb') as f:
+                scaler = pickle.load(f)
+            print(f"✅ Scaler loaded successfully - Type: {type(scaler)}")
+        except Exception as e:
+            print(f"❌ Error loading scaler: {str(e)}")
+            return False
         
         # Load feature info
         print("📁 Loading feature info...")
-        with open('feature_info.pkl', 'rb') as f:
-            feature_info = pickle.load(f)
-        print("✅ Feature info loaded successfully")
+        try:
+            with open('feature_info.pkl', 'rb') as f:
+                feature_info = pickle.load(f)
+            print(f"✅ Feature info loaded successfully - Type: {type(feature_info)}")
+        except Exception as e:
+            print(f"❌ Error loading feature info: {str(e)}")
+            return False
         
+        print("🎉 All components loaded successfully!")
         return True
     
     except Exception as e:
-        print(f"❌ Error loading model/preprocessors: {str(e)}")
-        print(f"📁 Current directory files: {os.listdir('.')}")
+        print(f"❌ Unexpected error in load_model_and_preprocessors: {str(e)}")
+        print(f"   Traceback: {traceback.format_exc()}")
         return False
 
 def convert_age_to_days(age_years):
@@ -62,32 +86,72 @@ def convert_age_to_years(age_days):
     return round(age_days / 365.25, 1)
 
 # Load model and preprocessors on startup
-print("🚀 Starting application...")
+print("🚀 Starting Cardiovascular Disease Prediction API...")
+print(f"🐍 Python version: {sys.version}")
+print(f"🧠 TensorFlow version: {tf.__version__}")
 print(f"📁 Working directory: {os.getcwd()}")
-print(f"📁 Files available: {os.listdir('.')}")
+
+# Try to load models immediately
+if load_model_and_preprocessors():
+    print("✅ Initialization successful - All models loaded")
+else:
+    print("⚠️ Initialization failed - Models will be loaded on first request")
 
 @app.route('/', methods=['GET'])
 def home():
     """API information endpoint"""
     return jsonify({
         "message": "Cardiovascular Disease Prediction API",
-        "version": "1.0.0",
+        "version": "1.0.1",
         "status": "active",
         "endpoints": {
             "POST /predict": "Make cardiovascular disease prediction",
             "GET /health": "Health check",
             "GET /model-info": "Model information",
-            "POST /convert-age": "Convert age between years and days"
+            "POST /convert-age": "Convert age between years and days",
+            "GET /debug": "Debug information"
         },
-        "model_status": "loaded" if model is not None else "not_loaded"
+        "model_status": "loaded" if model is not None else "not_loaded",
+        "components": {
+            "model": "loaded" if model is not None else "not_loaded",
+            "scaler": "loaded" if scaler is not None else "not_loaded", 
+            "feature_info": "loaded" if feature_info is not None else "not_loaded"
+        }
     })
+
+@app.route('/debug', methods=['GET'])
+def debug_info():
+    """Debug information endpoint"""
+    try:
+        return jsonify({
+            "working_directory": os.getcwd(),
+            "files_in_directory": os.listdir('.'),
+            "python_version": sys.version,
+            "tensorflow_version": tf.__version__,
+            "model_loaded": model is not None,
+            "scaler_loaded": scaler is not None,
+            "feature_info_loaded": feature_info is not None,
+            "model_type": str(type(model)) if model is not None else "None",
+            "scaler_type": str(type(scaler)) if scaler is not None else "None",
+            "feature_info_type": str(type(feature_info)) if feature_info is not None else "None",
+            "file_sizes": {
+                "my_best_model.h5": os.path.getsize("my_best_model.h5") if os.path.exists("my_best_model.h5") else "Not found",
+                "scaler.pkl": os.path.getsize("scaler.pkl") if os.path.exists("scaler.pkl") else "Not found",
+                "feature_info.pkl": os.path.getsize("feature_info.pkl") if os.path.exists("feature_info.pkl") else "Not found"
+            }
+        })
+    except Exception as e:
+        return jsonify({
+            "error": str(e),
+            "traceback": traceback.format_exc()
+        }), 500
 
 @app.route('/health', methods=['GET'])
 def health_check():
     """Health check endpoint"""
     # Try to reload model if not loaded
-    if model is None:
-        print("🔄 Attempting to reload model...")
+    if model is None or scaler is None or feature_info is None:
+        print("🔄 Health check: Attempting to reload models...")
         load_model_and_preprocessors()
     
     status = {
@@ -95,7 +159,9 @@ def health_check():
         "timestamp": datetime.datetime.now().isoformat(),
         "model_loaded": model is not None,
         "scaler_loaded": scaler is not None,
-        "feature_info_loaded": feature_info is not None
+        "feature_info_loaded": feature_info is not None,
+        "working_directory": os.getcwd(),
+        "available_files": os.listdir('.') if os.path.exists('.') else []
     }
     
     if all([model is not None, scaler is not None, feature_info is not None]):
@@ -107,17 +173,19 @@ def health_check():
 def model_info():
     """Get model information"""
     if model is None:
-        return jsonify({
-            "error": "Model not loaded",
-            "status": "error"
-        }), 503
+        # Try to load model
+        if not load_model_and_preprocessors():
+            return jsonify({
+                "error": "Model not loaded and failed to load",
+                "status": "error"
+            }), 503
     
     try:
         return jsonify({
             "model_type": "Neural Network (Keras)",
-            "input_shape": model.input_shape,
-            "output_shape": model.output_shape,
-            "total_params": model.count_params(),
+            "input_shape": str(model.input_shape),
+            "output_shape": str(model.output_shape),
+            "total_params": int(model.count_params()),
             "layers": len(model.layers),
             "features_count": len(feature_info) if feature_info else "unknown",
             "status": "loaded"
@@ -126,6 +194,7 @@ def model_info():
     except Exception as e:
         return jsonify({
             "error": str(e),
+            "traceback": traceback.format_exc(),
             "status": "error"
         }), 500
 
@@ -180,6 +249,7 @@ def convert_age():
     except Exception as e:
         return jsonify({
             "error": str(e),
+            "traceback": traceback.format_exc(),
             "status": "error"
         }), 500
 
@@ -187,12 +257,14 @@ def convert_age():
 def predict():
     """Make cardiovascular disease prediction"""
     try:
-        # Validasi model
+        # Validasi model - try to load if not loaded
         if model is None or scaler is None or feature_info is None:
-            return jsonify({
-                "error": "Model tidak tersedia",
-                "status": "error"
-            }), 500
+            print("🔄 Predict: Models not loaded, attempting to load...")
+            if not load_model_and_preprocessors():
+                return jsonify({
+                    "error": "Model tidak tersedia dan gagal dimuat",
+                    "status": "error"
+                }), 500
         
         # Ambil data dari request
         data = request.get_json()
@@ -321,6 +393,7 @@ def predict():
     except Exception as e:
         return jsonify({
             "error": str(e),
+            "traceback": traceback.format_exc(),
             "status": "error"
         }), 500
 
@@ -348,12 +421,6 @@ def internal_error(error):
         "message": "An unexpected error occurred",
         "status": "error"
     }), 500
-
-# Initialize model loading
-if load_model_and_preprocessors():
-    print("✅ All models loaded successfully")
-else:
-    print("⚠️ Model loading failed - will retry on first request")
 
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 10000))
