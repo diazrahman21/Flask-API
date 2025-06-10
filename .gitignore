@@ -73,3 +73,8 @@ htmlcov/
 *.temp
 .tmp/
 temp/
+
+# IMPORTANT: Don't ignore model files for deployment
+# my_best_model.h5
+# scaler.pkl  
+# feature_info.pkl
