@@ -1,34 +1,41 @@
-# Gunakan Python 3.9 slim sebagai base image
+# Gunakan Python 3.9 untuk kompatibilitas TensorFlow
 FROM python:3.9-slim
 
-# Set working directory di dalam container
+# Tetapkan direktori kerja
 WORKDIR /app
 
-# Install system dependencies
+# Atur environment variables untuk Flask dan Python
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV PYTHONUNBUFFERED=1
+ENV FLASK_APP=app.py
+ENV FLASK_ENV=production
+
+# Install dependensi sistem yang mungkin diperlukan oleh library Python
 RUN apt-get update && apt-get install -y \
-    gcc \
-    curl \
+    build-essential \
     && rm -rf /var/lib/apt/lists/*
 
-# Copy requirements file
+# Salin file requirements terlebih dahulu untuk caching yang lebih baik
 COPY requirements.txt .
 
-# Install Python dependencies
+# Install dependensi Python
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy semua file aplikasi ke container
+# Salin seluruh kode aplikasi (termasuk .py, .h5, .pkl)
 COPY . .
 
-# Set environment variables
-ENV PYTHONPATH=/app
-ENV FLASK_APP=app.py
+# Buat user non-root untuk keamanan
+# 'adduser' tidak ada di slim, gunakan 'useradd'
+RUN useradd --system appuser && \
+    chown -R appuser:appuser /app
+USER appuser
 
-# Expose port (sesuaikan dengan Render)
-EXPOSE 10000
+# Expose port yang akan digunakan oleh Gunicorn
+EXPOSE 5000
 
-# Health check
-HEALTHCHECK --interval=30s --timeout=30s --start-period=15s --retries=3 \
-    CMD curl -f http://localhost:10000/health || exit 1
+# Health check untuk memonitor status aplikasi
+HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
+    CMD curl -f http://localhost:5000/health || exit 1
 
-# Start command
-CMD ["gunicorn", "--bind", "0.0.0.0:10000", "--workers", "1", "--timeout", "120", "app:app"]
+# PERBAIKAN UTAMA: Jalankan aplikasi menggunakan Gunicorn untuk produksi
+CMD ["gunicorn", "--workers", "4", "--bind", "0.0.0.0:5000", "app:app"]

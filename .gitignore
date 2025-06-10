@@ -1,4 +1,3 @@
-
 __pycache__/
 *.pyc
 *.pyo
@@ -38,3 +37,19 @@ Thumbs.db
 # Environment variables
 .env
 docker-compose.yml
+
+# TensorFlow and model files
+temp_model/
+*.tmp
+*.temp
+.tensorflow/
+__tf_cache__/
+
+# Development files
+.pytest_cache/
+.coverage
+.tox/
+*.egg-info/
+
+# Jupyter notebooks (if any)
+.ipynb_checkpoints/
