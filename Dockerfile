@@ -33,5 +33,5 @@ EXPOSE 5000
 HEALTHCHECK --interval=30s --timeout=30s --start-period=5s --retries=3 \
     CMD curl -f http://localhost:5000/health || exit 1
 
-# Command untuk menjalankan aplikasi dengan Gunicorn
-CMD ["gunicorn", "--bind", "0.0.0.0:5000", "--workers", "2", "--timeout", "120", "app:app"]
+# Ganti baris CMD Anda dengan ini:
+CMD ["gunicorn", "--bind", "0.0.0.0:10000", "app:app"]
