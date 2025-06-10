@@ -19,9 +19,6 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copy semua file aplikasi ke container
 COPY . .
 
-# Buat direktori untuk saved_data
-RUN mkdir -p saved_data
-
 # Set environment variables
 ENV PYTHONPATH=/app
 ENV FLASK_APP=app.py
@@ -29,9 +26,9 @@ ENV FLASK_APP=app.py
 # Expose port (sesuaikan dengan Render)
 EXPOSE 10000
 
-# Health check - gunakan port yang sama
+# Health check
 HEALTHCHECK --interval=30s --timeout=30s --start-period=15s --retries=3 \
     CMD curl -f http://localhost:10000/health || exit 1
 
-# Start command - gunakan port 10000 untuk Render
+# Start command
 CMD ["gunicorn", "--bind", "0.0.0.0:10000", "--workers", "1", "--timeout", "120", "app:app"]
